@@ -12,39 +12,43 @@
 	};
 
 	const themes = [
-		'light',
+		'blaze',
 		'dark',
-		'cupcake',
-		'bumblebee',
-		'emerald',
-		'corporate',
-		'synthwave',
-		'retro',
-		'cyberpunk',
-		'valentine',
-		'halloween',
-		'garden',
-		'forest',
-		'aqua',
-		'lofi',
-		'pastel',
-		'fantasy',
-		'wireframe',
-		'black',
-		'luxury',
 		'dracula',
-		'cmyk',
-		'autumn',
-		'business',
-		'acid',
-		'lemonade',
-		'night',
-		'coffee',
-		'winter'
+		'valentine'
+		// 'light',
+		// 'dark',
+		// 'cupcake',
+		// 'bumblebee',
+		// 'emerald',
+		// 'corporate',
+		// 'synthwave',
+		// 'retro',
+		// 'cyberpunk',
+		// 'valentine',
+		// 'halloween',
+		// 'garden',
+		// 'forest',
+		// 'aqua',
+		// 'lofi',
+		// 'pastel',
+		// 'fantasy',
+		// 'wireframe',
+		// 'black',
+		// 'luxury',
+		// 'dracula',
+		// 'cmyk',
+		// 'autumn',
+		// 'business',
+		// 'acid',
+		// 'lemonade',
+		// 'night',
+		// 'coffee',
+		// 'winter'
 	];
 </script>
 
-<div class="bg-base-300 min-h-full">
+<div class="min-h-full px-[5%]">
 	<div class="navbar bg-base-100 px-6">
 		<div class="flex-1">
 			<a href="/" class="font-bold text-xl">Pokedex</a>

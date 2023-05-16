@@ -1,17 +1,22 @@
 <script lang="ts">
 	import type { PageData } from './$types.js';
-	export let data: PageData;
-	const { listOfPokemon } = data;
 	import PokemonCard from '$lib/pokemonCard.svelte';
+
+	export let data: PageData;
+
+	const { listOfPokemon } = data;
+
+	let search = '';
+	$: selectedPokemon = listOfPokemon.filter((pokemon) => {
+		return pokemon.name.toLowerCase().includes(search.toLowerCase());
+	});
 </script>
 
 <h1 class="text-3xl font-bold">Pokemon</h1>
-<div class="flex flex-row flex-wrap">
-	{#each listOfPokemon as pokemon (pokemon.id)}
-		<div class="w-28 min-h-24 flex flex-col justify-items-center items-center border-2 border-solid border-stone-950 m-4 p-4">
-			<img src={pokemon.img} alt={pokemon.name} />
-			{pokemon.id} : {pokemon.name}
-		</div>
+<input type="text" bind:value={search} placeholder="Search for a Pokemon" class="input-bordered w-full max-w-xs" />
+<div class="flex flex-row flex-wrap items-center justify-center gap-8">
+	{#each selectedPokemon as pokemon (pokemon.id)}
+		<PokemonCard pokemonId={pokemon.id} pokemonName={pokemon.name} pokemonImg={pokemon.img} />
 	{/each}
 </div>
 

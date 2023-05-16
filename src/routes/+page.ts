@@ -1,16 +1,21 @@
 import type { PageLoad } from './$types';
 import { Capitalize } from '../utils/capitalize';
 
-type IndexMonster = {
+type ApiMonster = {
 	name: string;
 	url: string;
+};
+
+type IndexMonster = ApiMonster & {
+	id: string;
+	img: string;
 };
 
 export const load = (async ({ fetch }) => {
 	const fetchPokemon = async () => {
 		const pokemonRes = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=151`);
 		const json = await pokemonRes.json();
-		const monsters = json.results.map((monster: IndexMonster) => {
+		const monsters: IndexMonster[] = json.results.map((monster: ApiMonster) => {
 			const capitalizedName = Capitalize(monster.name);
 			const splitUrl = monster.url.split('/');
 			const id = splitUrl[splitUrl.length - 2];
@@ -18,7 +23,9 @@ export const load = (async ({ fetch }) => {
 				name: capitalizedName,
 				url: monster.url,
 				id,
-				img: `https://pkmn.net/sprites/crystal/${id}.gif`
+				// img: `https://pkmn.net/sprites/crystal/${id}.gif`
+				img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+			//	img: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
 			};
 		});
 		return monsters;
