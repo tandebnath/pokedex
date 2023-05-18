@@ -8,7 +8,7 @@
 	<div class="card w-96 shadow-xl">
 		<figure><img src={pokemonImg} alt={pokemonName} class="w-32" /></figure>
 		<div class="card-body">
-			<h2 class="card-title justify-center text-black">{pokemonName}</h2>
+			<h2 class="card-title justify-center text-accent">{pokemonName}</h2>
 		</div>
 	</div>
 </a>
