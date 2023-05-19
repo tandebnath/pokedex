@@ -1,11 +1,11 @@
 <script>
 	// @ts-nocheck
 
-	import { Capitalize } from '../../utils/capitalize.ts';
+	import { Capitalize } from '$lib/utils/capitalize.ts';
 
 	// @ts-nocheck
 
-	import { prepend } from '../../utils/prepend.ts';
+	import { prepend } from '$lib/utils/prepend.ts';
 
 	export let data;
 	const { pokemonDetails, pokemonSpeciesDetails } = data;
@@ -107,9 +107,18 @@
 					</div>
 					<div id="pokemon-stats" class="flex flex-col">
 						{#each pokemonStats as stat}
-							<div class="flex flex-row gap-4 items-center">
-								<div class="bg-warning h-[50%] flex items-center text-xs rounded-lg justify-start pl-2 text-black" style={`width:${255 - stat.value}px`}>{stat.value}</div>
-								<p class="text-lg font-semibold">{stat.name}</p>
+							<div class="flex flex-row items-center">
+								<div
+									class="bg-warning h-[50%] flex items-center text-xs rounded-l-lg justify-start pl-2 text-black"
+									style={`width:${stat.value}px`}
+								>
+									{stat.value}
+								</div>
+								<div
+									class="bg-gray-600 h-[50%] flex items-center rounded-r-lg"
+									style={`width:${255 - stat.value}px`}
+								/>
+								<p class="text-lg font-semibold ml-4">{stat.name}</p>
 							</div>
 						{/each}
 					</div>

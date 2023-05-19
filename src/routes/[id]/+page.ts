@@ -1,5 +1,5 @@
 import type { PageLoad } from './$types';
-import { Capitalize } from '../../utils/capitalize';
+import { Capitalize } from '../../lib/utils/capitalize';
 
 export const load = (async ({ fetch, params }) => {
 	const fetchPokemonDetails = async () => {

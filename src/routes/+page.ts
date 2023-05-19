@@ -1,5 +1,6 @@
 import type { PageLoad } from './$types';
-import { Capitalize } from '../utils/capitalize';
+import { Capitalize } from '$lib/utils/capitalize';
+import { prepend } from '$lib/utils/prepend';
 
 type ApiMonster = {
 	name: string;
@@ -9,6 +10,7 @@ type ApiMonster = {
 type IndexMonster = ApiMonster & {
 	id: string;
 	img: string;
+	displayId: string;
 };
 
 export const load = (async ({ fetch }) => {
@@ -19,6 +21,7 @@ export const load = (async ({ fetch }) => {
 			const capitalizedName = Capitalize(monster.name);
 			const splitUrl = monster.url.split('/');
 			const id = splitUrl[splitUrl.length - 2];
+			const displayId = prepend(id);
 			// const imageId = Number(id).toLocaleString('en-us', {
 			// 	minimumIntegerDigits: 3,
 			// 	useGrouping: false
@@ -27,10 +30,11 @@ export const load = (async ({ fetch }) => {
 				name: capitalizedName,
 				url: monster.url,
 				id,
+				displayId,
 				//img: `https://archives.bulbagarden.net/media/upload/d/df/Spr_2c_${imageId}.png`
 				// https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/1.svg
-				// img: `https://pkmn.net/sprites/crystal/${id}.gif`
-				img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
+				img: `https://pkmn.net/sprites/crystal/${id}.gif`
+				// img: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${id}.png`
 				//	img: `https://unpkg.com/pokeapi-sprites@2.0.2/sprites/pokemon/other/dream-world/${id}.svg`
 			};
 		});

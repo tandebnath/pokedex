@@ -5,7 +5,7 @@
 	import pokeballLogo from '$lib/assets/pokemon.svg';
 	import pokedexPng from '$lib/assets/pokedex-png.png';
 
-	//export const prerender = true;
+	export const prerender = true;
 
 	const submitUpdateTheme: SubmitFunction = ({ action }) => {
 		const theme = action.searchParams.get('theme');
@@ -27,8 +27,8 @@
 		<div class="navbar-end flex-none">
 			<ul class="menu menu-horizontal px-1 z-50">
 				<li>
-					<button class="bg-[#434164]"><p class="text-white">Choose Theme 🎨</p></button>
-					<ul class="p-2 w-full max-h-96 overflow-y-scroll bg-[#434164]">
+					<button class="bg-[#9e102a]"><p class="text-white">Choose Theme 🎨</p></button>
+					<ul class="p-2 w-full max-h-96 overflow-y-scroll bg-[#9e102a]">
 						<form method="POST" use:enhance={submitUpdateTheme}>
 							{#each themes as theme}
 								<li>
