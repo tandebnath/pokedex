@@ -45,21 +45,21 @@
 		shadow: '#282828'
 	};
 	const capitalizedTypes = pokemonTypes.map((/** @type {{ name: any; }} */ item) =>
-		Capitalize(item.name)
+		Capitalize(item.type.name)
 	);
-	const baseColor = chipColors[pokemonTypes[0].name];
+	const baseColor = chipColors[pokemonTypes[0].type.name];
 </script>
 
 {#await data}
 	Loading...
 {:then value}
-	<div class={`flex flex-col gap-8 bg-${pokemonColor}-50`}>
-		<div class="flex flex-row flex-wrap gap-x-32 gap-y-4">
-			<div class="flex justify-center items-center">
+	<div class={`flex flex-col gap-8`}>
+		<div class="flex flex-row flex-wrap gap-x-8 gap-y-4 mt-4">
+			<div id="pokemon-image" class="flex justify-center items-center w-[100%] max-w-xs">
 				<img src={`${pokemonImage}`} alt={`${pokemonName}`} />
 			</div>
-			<div class="flex flex-col gap-4">
-				<p class="text-xl font-bold">
+			<div id="pokemon-info" class="flex flex-col gap-y-4 gap-x-2">
+				<p class="text-2xl font-bold">
 					#{pokemonId}&nbsp;&nbsp;{pokemonName}&nbsp;/&nbsp;{pokemonJapaneseName}
 				</p>
 				<div id="pokemon-types" class="flex flex-row gap-2 mb-4">
@@ -72,32 +72,44 @@
 						</div>
 					{/each}
 				</div>
-				<div id="pokemon-height-weight" class="flex flex-row justify-between">
-					<div class="flex flex-col">
-						<p class="text-lg font-bold text-accent-focus">Height</p>
-						<p class="font-semibold">{pokemonHeight}m</p>
+				<div class="flex flex-row flex-wrap gap-y-8 gap-x-48">
+					<div class="flex flex-col gap-y-4">
+						<div id="pokemon-height-weight" class="flex flex-row justify-between gap-x-16">
+							<div class="flex flex-col">
+								<p class="text-lg font-bold text-accent-focus">Height</p>
+								<p class="font-semibold">{pokemonHeight}m</p>
+							</div>
+							<div class="flex flex-col">
+								<p class="text-lg font-bold text-accent-focus">Weight</p>
+								<p class="font-semibold">{pokemonWeight}kg</p>
+							</div>
+						</div>
+						<div id="pokemon-category-habitat" class="flex flex-row justify-between gap-x-16">
+							<div class="flex flex-col">
+								<p class="text-lg font-bold text-accent-focus">Category</p>
+								<p class="font-semibold">{pokemonCategory}</p>
+							</div>
+							<div class="flex flex-col">
+								<p class="text-lg font-bold text-accent-focus">Habitat</p>
+								<p class="font-semibold">{pokemonHabitat}</p>
+							</div>
+						</div>
+						<div id="pokemon-abilities" class="flex flex-col">
+							<p class="text-lg font-bold text-accent-focus">Ability</p>
+							<div class="flex flex-row gap-x-2 mt-1">
+								{#each pokemonAbilities as ability}
+									<div class="badge badge-outline" style={`border:1px solid ${baseColor}`}>
+										<p class="font-semibold">{ability.ability.name}</p>
+									</div>
+								{/each}
+							</div>
+						</div>
 					</div>
-					<div class="flex flex-col">
-						<p class="text-lg font-bold text-accent-focus">Weight</p>
-						<p class="font-semibold">{pokemonWeight}kg</p>
-					</div>
-				</div>
-				<div id="pokemon-category-habitat" class="flex flex-row justify-between">
-					<div class="flex flex-col">
-						<p class="text-lg font-bold text-accent-focus">Category</p>
-						<p class="font-semibold">{pokemonCategory}</p>
-					</div>
-					<div class="flex flex-col">
-						<p class="text-lg font-bold text-accent-focus">Habitat</p>
-						<p class="font-semibold">{pokemonHabitat}</p>
-					</div>
-				</div>
-				<div id="pokemon-abilities" class="flex flex-col">
-					<p class="text-lg font-bold text-accent-focus">Ability</p>
-					<div class="flex flex-row gap-x-2 mt-1">
-						{#each pokemonAbilities as ability}
-							<div class="badge badge-outline" style={`border:1px solid ${baseColor}`}>
-								<p class="font-semibold">{ability.ability.name}</p>
+					<div id="pokemon-stats" class="flex flex-col">
+						{#each pokemonStats as stat}
+							<div class="flex flex-row gap-4 items-center">
+								<div class="bg-warning h-[50%] flex items-center text-xs rounded-lg justify-start pl-2 text-black" style={`width:${255 - stat.value}px`}>{stat.value}</div>
+								<p class="text-lg font-semibold">{stat.name}</p>
 							</div>
 						{/each}
 					</div>
